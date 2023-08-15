@@ -29,7 +29,7 @@ function validateStr(idValue, spanMessageIdValue, messageValue, min, max, printI
 
 function validateString(max, min, str) {
 
-	if (str == undefined || str.trim() == ''
+	if (str === undefined || str.trim() === ''
 		|| str.length > max || str.length < min)
 		return false
 
@@ -74,7 +74,7 @@ function validateDate(idValue, spanMessageIdValue, messageValue, printInDom, isO
 
 function validateDateRequired(dateP) {
 
-	if (dateP == undefined || dateP.trim() == '')
+	if (dateP === undefined || dateP.trim() === '')
 		return false
 
 	return true;
@@ -84,7 +84,7 @@ function validateDateRequired(dateP) {
 
 function validateDateAndRange(dateP) {
 
-	if (dateP == undefined || dateP.trim() == '')
+	if (dateP === undefined || dateP.trim() === '')
 		return false
 
 	return true;

@@ -1,3 +1,9 @@
+/*  Developer : Alfredo Sanchez Verduzco 
+	GitHub: (AlfredoSv)(https://github.com/AlfredoSV)
+	Versión 0.0.1
+	Date of last modification: : 8/23/2023 - 8:53 a.m
+
+*/
 
 /*Functions for validation of string (min,max, undifined and required)*/
 

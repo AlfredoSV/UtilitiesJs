@@ -1,45 +1,41 @@
 /*  Developer : Alfredo Sanchez Verduzco 
 	GitHub: (AlfredoSv)(https://github.com/AlfredoSV)
-	Versión 0.0.1
+	Versión 0.0.2
 	Date of last modification: : 8/23/2023 - 8:53 a.m
 
 */
 
 /*Functions for validation of string (min,max, undifined and required)*/
 
-function validateStr(idValue, spanMessageIdValue, messageValue, min, max, printInDom) {
-	
+function validateStr(idValue, spanMessageIdValue, messageValue, min, max, printInDom, showMessageDefault = true) {
+
 	let formInputs = {
 
 		inputName: {
 			id: idValue,
 			spanMessageId: spanMessageIdValue,
-			message: messageValue
+			message: !showMessageDefault ? messageValue : "El string tiene que ser menor a " + max + "carácteres y menor a" + min + "carácteres"
 		}
 
 	}
 
-	let isValid = validateString(max, min, document.getElementById(formInputs.inputName.id).value)
+	let isValid = validateString(max, min, document.getElementById(formInputs.inputName.id).value);
 
-	if (printInDom) {
+	if (!printInDom)
+		return isValid;
 
-		if (isValid)
-			hideMessageValidation(formInputs.inputName.id, formInputs.inputName.spanMessageId)
-		else
-			showMessageValidation(formInputs.inputName.id, formInputs.inputName.spanMessageId, formInputs.inputName.message)
+	if (isValid)
+		hideMessageValidation(formInputs.inputName.id, formInputs.inputName.spanMessageId);
+	else
+		showMessageValidation(formInputs.inputName.id, formInputs.inputName.spanMessageId, formInputs.inputName.message);
 
-	}
-
-	return isValid
+	return isValid;
 }
 
 function validateString(max, min, str) {
 
-	if (str == undefined || str.trim() == ''
-		|| str.length > max || str.length < min)
-		return false
-
-	return true;
+	return !(str == undefined || str.trim() == ''
+		|| str.length > max || str.length < min);
 
 }
 
@@ -61,41 +57,30 @@ function validateDate(idValue, spanMessageIdValue, messageValue, printInDom, isO
 
 	let isValid = false
 
-	if (isOnlyRequired) 
-		isValid = validateDateRequired(document.getElementById(formInputs.inputName.id).value)
+	if (isOnlyRequired)
+		isValid = validateDateRequired(document.getElementById(formInputs.inputName.id).value);
 	else
-		isValid = validateDateAndRange(document.getElementById(formInputs.inputName.id).value)
-	
-	if (printInDom) {
+		isValid = validateDateAndRange(document.getElementById(formInputs.inputName.id).value);
 
-		if (isValid)
-			hideMessageValidation(formInputs.inputName.id, formInputs.inputName.spanMessageId)
-		else
-			showMessageValidation(formInputs.inputName.id, formInputs.inputName.spanMessageId, formInputs.inputName.message)
+	if (!printInDom)
+		return isValid;
 
-	}
+	if (isValid)
+		hideMessageValidation(formInputs.inputName.id, formInputs.inputName.spanMessageId);
+	else
+		showMessageValidation(formInputs.inputName.id, formInputs.inputName.spanMessageId, formInputs.inputName.message);
 
-	return isValid
+	return isValid;
 }
 
 function validateDateRequired(dateP) {
 
-	if (dateP == undefined || dateP.trim() == '')
-		return false
-
-	return true;
-
-
+	return !(dateP == undefined || dateP.trim() == '');
 }
 
 function validateDateAndRange(dateP) {
 
-	if (dateP == undefined || dateP.trim() == '')
-		return false
-
-	return true;
-
-
+	return !(dateP == undefined || dateP.trim() == '');
 }
 
 /*Functions for validation of date (dateMin, dateMaX, undifined and required)*/
@@ -106,10 +91,9 @@ function showMessageValidation(idInput, id, message) {
 	let spanMessage = document.querySelector("#" + id);
 	let inputValue = document.querySelector("#" + idInput);
 	spanMessage.innerHTML = message;
-	spanMessage.style.color = "red"
+	spanMessage.style.color = "red";
 	spanMessage.style.marginTop = "7px";
 	inputValue.style.border = "solid red 1.5px";
-
 }
 
 function hideMessageValidation(idInput, id) {
@@ -118,7 +102,6 @@ function hideMessageValidation(idInput, id) {
 	let spanMessage = document.querySelector("#" + id);
 	spanMessage.innerHTML = "";
 	inputValue.style.border = "";
-
 }
 
 
@@ -159,16 +142,15 @@ function validateSelect(idValue, spanMessageIdValue, messageValue, printInDom) {
 	let select = document.querySelector("#" + idValue);
 	isValid = select.value !== "0";
 
-	if (printInDom) {
+	if (!printInDom)
+		return isValid;
 
-		if (isValid)
-			hideMessageValidation(formInputs.inputName.id, formInputs.inputName.spanMessageId)
-		else
-			showMessageValidation(formInputs.inputName.id, formInputs.inputName.spanMessageId, formInputs.inputName.message)
+	if (isValid)
+		hideMessageValidation(formInputs.inputName.id, formInputs.inputName.spanMessageId);
+	else
+		showMessageValidation(formInputs.inputName.id, formInputs.inputName.spanMessageId, formInputs.inputName.message);
 
-	}
-
-	return isValid
+	return isValid;
 }
 
 /*Function of validate the value integer*/
@@ -192,16 +174,15 @@ function validateIntegerNumber(idValue, spanMessageIdValue, messageValue, printI
 	if (str.value === '')
 		isValid = false;
 
-	if (printInDom) {
+	if (!printInDom)
+		return isValid;
 
-		if (isValid)
-			hideMessageValidation(formInputs.inputName.id, formInputs.inputName.spanMessageId)
-		else
-			showMessageValidation(formInputs.inputName.id, formInputs.inputName.spanMessageId, formInputs.inputName.message)
+	if (isValid)
+		hideMessageValidation(formInputs.inputName.id, formInputs.inputName.spanMessageId);
+	else
+		showMessageValidation(formInputs.inputName.id, formInputs.inputName.spanMessageId, formInputs.inputName.message);
 
-	}
-
-	return isValid
+	return isValid;
 }
 
 /*Function of validate the value floating*/
@@ -225,14 +206,13 @@ function validateFloatingNumber(idValue, spanMessageIdValue, messageValue, print
 	if (str.value === '')
 		isValid = false;
 
-	if (printInDom) {
+	if (!printInDom)
+		return isValid;
 
-		if (isValid)
-			hideMessageValidation(formInputs.inputName.id, formInputs.inputName.spanMessageId)
-		else
-			showMessageValidation(formInputs.inputName.id, formInputs.inputName.spanMessageId, formInputs.inputName.message)
+	if (isValid)
+		hideMessageValidation(formInputs.inputName.id, formInputs.inputName.spanMessageId);
+	else
+		showMessageValidation(formInputs.inputName.id, formInputs.inputName.spanMessageId, formInputs.inputName.message);
 
-	}
-
-	return isValid
+	return isValid;
 }

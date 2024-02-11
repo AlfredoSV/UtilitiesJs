@@ -1,7 +1,7 @@
 /*  Developer : Alfredo Sanchez Verduzco 
 	GitHub: (AlfredoSv)(https://github.com/AlfredoSV)
 	Versión 0.0.2
-	Date of last modification: : 8/23/2023 - 8:53 a.m
+	Date of last modification: : 02/11/2024 - 9:24 a.m
 
 */
 
@@ -26,7 +26,8 @@ function validateStr(idValue, spanMessageIdValue, messageValue, min, max, printI
 
 	if (isValid)
 		hideMessageValidation(formInputs.inputName.id, formInputs.inputName.spanMessageId);
-	else
+	
+	if(!isValid)
 		showMessageValidation(formInputs.inputName.id, formInputs.inputName.spanMessageId, formInputs.inputName.message);
 
 	return isValid;
